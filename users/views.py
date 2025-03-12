@@ -3,8 +3,11 @@ from django.views.generic.edit import FormView
 from users.forms import RegisterForm, LoginFrom
 from django.urls import reverse_lazy
 from django.contrib.auth import authenticate, login
+from django.utils.decorators import method_decorator
+from django.contrib.auth.decorators import login_required
 
 
+@method_decorator(login_required(login_url='login'), name='dispatch')
 class IndexView(TemplateView):
     template_name = 'auth/index.html'
 
